@@ -1,267 +1,233 @@
 <!DOCTYPE html>
-<html lang="pt-BR" dir="ltr">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Identificador de PANC</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Identificador de PANC</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-    section {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      background: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1920&q=80")
-        no-repeat center center/cover;
-    }
+body { overflow-x: hidden; }
 
-    header {
-      position: relative;
-      top: 0;
-      width: 100%;
-      padding: 30px 100px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1920&q=80") no-repeat center center/cover;
+}
 
-    header .logo {
-      color: #2e7d32;
-      font-size: 32px;
-      text-decoration: none;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
+header {
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
 
-    .navigation {
-      display: flex;
-      align-items: center;
-      z-index: 2;
-    }
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: #2e7d32;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
 
-    .navigation a {
-      margin-right: 20px;
-      color: #2e7d32;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 5px 12px;
-      border-radius: 20px;
-      transition: 0.3s;
-      display: flex;
-      align-items: center;
-    }
+.navigation {
+  display: flex;
+  align-items: center;
+}
 
-    .navigation a:hover {
-      background: rgba(67, 160, 71, 0.3);
-    }
+.navigation a {
+  margin-right: 20px;
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
 
-    .media-icons {
-      display: flex;
-      align-items: center;
-      margin-left: 15px;
-    }
+.navigation a:hover { background: rgba(67, 160, 71, 0.3); }
 
-    .media-icons a {
-      color: #2e7d32;
-      font-size: 24px;
-      transition: 0.3s;
-    }
+.media-icons a {
+  color: #2e7d32;
+  font-size: 24px;
+  margin-left: 15px;
+  transition: 0.3s;
+}
 
-    .media-icons a:hover {
-      transform: scale(1.2);
-      color: #43a047;
-    }
+.media-icons a:hover { color: #43a047; transform: scale(1.2); }
 
-    .content {
-      max-width: 650px;
-      margin: 80px 100px;
-    }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1001;
+}
 
-    .content .info h2 {
-      color: #1b5e20;
-      font-size: 55px;
-      font-weight: 800;
-      text-transform: uppercase;
-      line-height: 60px;
-      margin-bottom: 30px;
-    }
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: #2e7d32;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
 
-    .content .info h2 span {
-      display: block;
-      color: #4caf50;
-      font-size: 45px;
-      font-weight: 600;
-    }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    .content .info p {
-      color: #2e2e2e;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
+.content {
+  max-width: 700px;
+  margin: 100px 100px 50px 100px;
+}
 
-    .content .info-btn {
-      color: #fff;
-      background: #43a047;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 1px;
-      padding: 12px 24px;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
+.content h2 {
+  font-size: clamp(28px, 5vw, 55px);
+  line-height: clamp(32px, 6vw, 60px);
+  font-weight: 900;
+  color: #1b5e20; 
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
 
-    .content .info-btn:hover {
-      background: #2e7d32;
-      transform: scale(1.05);
-    }
+.content h2 span {
+  display: block;
+  font-size: clamp(20px, 4vw, 45px);
+  font-weight: 700;
+  color: #43a047;
+  margin-top: 10px;
+}
 
-    /* Menu hamburguer */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 28px;
-      height: 22px;
-      cursor: pointer;
-      z-index: 1001;
-    }
+.content p {
+  color: #2e2e2e;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
 
-    .hamburger span {
-      height: 3px;
-      width: 100%;
-      background: #2e7d32;
-      border-radius: 3px;
-      transition: all 0.3s ease;
-    }
+.content .info-btn {
+  color: #fff;
+  background: #43a047;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
 
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
+.content .info-btn:hover { background: #2e7d32; transform: scale(1.05); }
 
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
+/* Responsivo */
+@media (max-width: 960px) {
+  .hamburger { display: flex; }
 
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+  /* Menu mobile igual identificador.html */
+  .navigation {
+    display: none;
+    position: fixed;
+    top: 20%;
+    right: 20px;
+    width: 220px;
+    background: #fff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+  }
+  .navigation.show { display: flex; }
 
-    /* Responsivo */
-    @media (max-width: 960px) {
-      .navigation {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(46, 125, 50, 0.95);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+  .navigation a {
+    font-size: 18px;
+    margin: 12px 0;
+    color: #2e7d32;
+  }
+  .media-icons a { color: #2e7d32; margin-top: 10px; }
+}
 
-      .navigation.show {
-        display: flex;
-      }
-
-      .navigation a {
-        font-size: 22px;
-        margin: 15px 0;
-        color: #fff;
-      }
-
-      .media-icons a {
-        color: #fff;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-  </style>
+@media (max-width: 600px) {
+  header { padding: 15px 20px; }
+  .logo { font-size: 24px; }
+  .content h2 { font-size: clamp(24px, 6vw, 45px); }
+  .content h2 span { font-size: clamp(18px, 5vw, 36px); }
+  .content p { font-size: 14px; padding: 12px; }
+  .content { margin: 60px 15px 30px 15px; }
+}
+</style>
 </head>
 <body>
 <section>
-  <header>
-    <h2><a href="https://www.instagram.com/pancprojeto.etec" class="logo">PANC</a></h2>
+<header>
+<a href="index.html" class="logo">PANC</a>
+<div class="navigation">
+<a href="landing-page.html">Início</a>
+<a href="index.html">Identificador</a>
+<div class="media-icons">
+<a href="https://www.instagram.com/pancprojeto.etec"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</header>
 
-    <div class="navigation">
-      <a href="landing-page.html">Início</a>
-      <a href="identificador.html">Identificador</a>
-      <div class="media-icons">
-        <a href="https://www.instagram.com/pancprojeto.etec"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
-
-  <div class="content">
-    <div class="info">
-      <h2>
-        Identifique <br />
-        <span>Plantas Alimentícias Não Convencionais</span>
-      </h2>
-      <p>
-        Combinamos o poder da tecnologia com o respeito ao meio ambiente para facilitar o reconhecimento e o estudo das PANCs.
-        Envie uma foto, identifique espécies e explore um novo modo de conhecer o potencial alimentar das plantas ao seu redor. 
-      </p>
-      <a href="identificador.html" class="info-btn">Acessar Identificador</a>
-    </div>
-  </div>
+<div class="content">
+<h2>Identifique <span>Plantas Alimentícias Não Convencionais</span></h2>
+<p>Combinamos o poder da tecnologia com o respeito ao meio ambiente para facilitar o reconhecimento e o estudo das PANCs. Envie uma foto, identifique espécies e explore um novo modo de conhecer o potencial alimentar das plantas ao seu redor.</p>
+<a href="identificador.html" class="info-btn">Acessar Identificador</a>
+</div>
 </section>
 
 <script>
-  const hamburger = document.getElementById("hamburger");
-  const nav = document.querySelector(".navigation");
-  const navLinks = document.querySelectorAll(".navigation a");
+const hamburger = document.getElementById("hamburger");
+const nav = document.querySelector(".navigation");
+const navLinks = document.querySelectorAll(".navigation a");
 
-  // Abre/fecha menu ao clicar no hambúrguer
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    nav.classList.toggle("show");
-  });
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  nav.classList.toggle("show");
+});
 
-  // Fecha o menu ao clicar em qualquer link
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      if (nav.classList.contains("show")) {
-        hamburger.classList.remove("active");
-        nav.classList.remove("show");
-      }
-    });
-  });
-
-  // Fecha o menu ao clicar fora dele
-  document.addEventListener("click", (e) => {
-    if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains("show")) {
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    if (nav.classList.contains("show")) {
       hamburger.classList.remove("active");
       nav.classList.remove("show");
     }
   });
-</script>
+});
 
+// Fecha clicando fora do card
+document.addEventListener("click", (e) => {
+  if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains("show")) {
+    hamburger.classList.remove("active");
+    nav.classList.remove("show");
+  }
+});
+</script>
 </body>
 </html>
