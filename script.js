@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hamburger && mobileMenu) {
     hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
-      mobileMenu.classList.toggle("show");
+      mobileMenu.style.display = mobileMenu.style.display === "flex" ? "none" : "flex";
     });
 
     // Fecha o menu se clicar fora
     document.addEventListener("click", (e) => {
-      if (!header.contains(e.target) && mobileMenu.classList.contains("show")) {
+      if (!header.contains(e.target) && mobileMenu.style.display === "flex") {
         hamburger.classList.remove("active");
-        mobileMenu.classList.remove("show");
+        mobileMenu.style.display = "none";
       }
     });
   }
@@ -76,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
         videoStream.getTracks().forEach(track => track.stop());
       }
 
-      // Ajusta constraints para celular
+      // Usando ideal para compatibilidade móvel
       const constraints = {
         video: {
           width: { ideal: 480 },
           height: { ideal: 360 },
-          facingMode: { exact: facingMode } // "user" ou "environment"
+          facingMode: { ideal: facingMode } // "user" ou "environment"
         },
         audio: false
       };
@@ -99,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
       webcamContainer.innerHTML = '';
       webcamContainer.appendChild(video);
 
-      // Habilita/desabilita botões
       document.getElementById('stop-webcam').disabled = false;
       document.getElementById('capture').disabled = false;
       document.getElementById('start-webcam-front').disabled = true;
@@ -109,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error(err);
-      resultEl.innerHTML = `<p style="color:red">Não foi possível acessar a câmera. Verifique permissões e HTTPS.</p>`;
+      resultEl.innerHTML = `<p style="color:red">Não foi possível acessar a câmera traseira. Alguns celulares não permitem no navegador. Tente a frontal.</p>`;
     }
   }
 
@@ -129,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (videoStream) {
       videoStream.getTracks().forEach(track => track.stop());
       videoStream = null;
-      webcamContainer.innerHTML = 'Câmera desligada';
+      webcamContainer.innerHTML = 'Webcam desligada';
       stopBtn.disabled = true;
       captureBtn.disabled = true;
       startFrontBtn.disabled = false;
