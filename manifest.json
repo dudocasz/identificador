@@ -1,0 +1,21 @@
+{
+  "name": "Identificador de PANCs",
+  "short_name": "PANC",
+  "description": "Identifique Plantas Alimentícias Não Convencionais (PANCs) com IA.",
+  "start_url": "identificador.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e7d32",
+  "icons": [
+    {
+      "src": "panc.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "panc.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identificador de PANCs</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2e7d32">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="landing-page.html" class="logo">PANC</a>
+
+    <nav class="navigation">
+      <a href="landing-page.html">Início</a>
+      <a href="identificador.html">Identificador</a>
+      <a href="https://www.instagram.com/pancprojeto.etec" target="_blank"><i class="fab fa-instagram"></i></a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="landing-page.html">Início</a>
+      <a href="identificador.html">Identificador</a>
+      <a href="https://www.instagram.com/pancprojeto.etec" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <h1>Identificador de PANCs</h1>
+    <p class="centralizado">
+      Envie uma imagem de uma folha ou use a câmera para identificar qual PANC é: Taioba, Peixinho-da-Horta ou Dente-de-Leão.
+    </p>
+
+    <div id="controls">
+      <button id="start-webcam-front">Abrir Câmera Frontal</button>
+      <button id="start-webcam-back">Abrir Câmera Traseira</button>
+      <button id="stop-webcam" disabled>Parar Câmera</button>
+      <button id="capture" disabled>Capturar & Identificar</button>
+      <label class="upload-label">
+        Selecionar Imagem
+        <input id="upload" type="file" accept="image/*" style="display:none;">
+      </label>
+    </div>
+
+    <div id="viewer">
+      <div id="webcam-container">Câmera não iniciada</div>
+      <div id="result">
+        <strong>O resultado aparecerá aqui</strong>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Feito usando <a href="https://teachablemachine.withgoogle.com/" target="_blank">Google Teachable Machine</a> & TensorFlow.js</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Registrar o Service Worker (PWA) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registrado com sucesso!'))
+        .catch(err => console.log('Falha ao registrar Service Worker:', err));
+    }
+  </script>
+</body>
+</html>

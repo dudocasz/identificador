@@ -1,0 +1,357 @@
+/* ===== FONTE ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f0f0f0;
+  color: #2e2e2e;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* centraliza o menu no PC */
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  opacity: 0; /* some quando rolar */
+}
+
+header .logo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2e7d32;
+  text-decoration: none;
+  margin-right: 40px;
+}
+
+header a {
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+header a:hover {
+  background: rgba(67, 160, 71, 0.2);
+}
+
+header a i {
+  font-size: 22px;
+  margin-left: 6px;
+}
+
+/* ===== HAMBURGUER ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background: #2e7d32;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 0;
+  z-index: 999;
+}
+
+.mobile-menu a {
+  padding: 10px 20px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.mobile-menu a:hover {
+  background: rgba(67, 160, 71, 0.2);
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.5s ease; /* animação de sumir */
+}
+
+main.hidden {
+  opacity: 0;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #1b5e20;
+  margin-bottom: 20px;
+}
+
+p {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 12px 16px;
+  border-radius: 10px;
+  max-width: 800px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+/* ===== CONTROLES ===== */
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+#controls button,
+#controls .upload-label {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 13px;
+  text-align: center;
+  flex: 0 0 auto;
+  min-width: 140px;
+  max-width: 180px;
+}
+
+#controls button {
+  background: #43a047;
+  color: #fff;
+}
+
+#controls button:hover {
+  background: #2e7d32;
+  transform: scale(1.05);
+}
+
+#controls .upload-label {
+  background: #fff;
+  color: #2e7d32;
+  border: 2px solid #2e7d32;
+}
+
+#controls .upload-label:hover {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* ===== VISUALIZAÇÃO ===== */
+#viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#webcam-container {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 3;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#webcam-container canvas,
+#webcam-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#result {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 480px;
+  font-weight: 600;
+  text-align: center;
+}
+
+#result img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#result ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px auto 0;
+  display: inline-block;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  color: #2e7d32;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.5;
+  max-width: 600px;
+  text-align: center;
+}
+
+footer a {
+  color: #43a047;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 960px) {
+  .navigation {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+  #controls button,
+  #controls .upload-label {
+    padding: 8px 14px;
+    font-size: 13px;
+    min-width: 120px;
+    max-width: 160px;
+  }
+  #webcam-container,
+  #result {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px 20px;
+  }
+  header .logo {
+    font-size: 22px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+  #controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  #controls button,
+  #controls .upload-label {
+    width: 90%;
+    max-width: 220px;
+    padding: 12px 0;
+    font-size: 14px;
+  }
+  #webcam-container,
+  #result {
+    max-width: 320px;
+  }
+  footer {
+    font-size: 0.85rem;
+  }
+}
+.centralizado {
+  text-align: center;
+  margin: 0 auto 30px auto; /* centraliza e mantém o espaçamento */
+  max-width: 800px;
+}
