@@ -19,7 +19,7 @@ body {
 header {
   width: 100%;
   display: flex;
-  justify-content: center; /* centraliza o menu no PC */
+  justify-content: center;
   align-items: center;
   padding: 20px 60px;
   background: rgba(255, 255, 255, 0.95);
@@ -32,7 +32,7 @@ header {
 }
 
 header.scrolled {
-  opacity: 0; /* some quando rolar */
+  opacity: 0;
 }
 
 header .logo {
@@ -93,23 +93,28 @@ header a i {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ===== MOBILE MENU ===== */
+/* ===== MOBILE MENU (CARD) ===== */
 .mobile-menu {
   display: none;
   flex-direction: column;
   position: absolute;
   top: 100%;
-  right: 0;
-  width: 200px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  padding: 10px 0;
+  right: 20px;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 15px 0;
   z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu.show {
+  display: flex;
 }
 
 .mobile-menu a {
-  padding: 10px 20px;
+  padding: 12px 20px;
   color: #2e7d32;
   font-weight: 500;
 }
@@ -128,11 +133,6 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: opacity 0.5s ease; /* animação de sumir */
-}
-
-main.hidden {
-  opacity: 0;
 }
 
 h1 {
@@ -220,8 +220,10 @@ p {
   align-items: center;
   border-radius: 10px;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
+#webcam-container video,
 #webcam-container canvas,
 #webcam-container img {
   width: 100%;
@@ -350,8 +352,9 @@ footer a:hover {
     font-size: 0.85rem;
   }
 }
+
 .centralizado {
   text-align: center;
-  margin: 0 auto 30px auto; /* centraliza e mantém o espaçamento */
+  margin: 0 auto 30px auto;
   max-width: 800px;
 }
