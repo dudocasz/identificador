@@ -9,14 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hamburger && mobileMenu) {
     hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
-      mobileMenu.style.display = mobileMenu.style.display === "flex" ? "none" : "flex";
+      mobileMenu.classList.toggle("show");
     });
 
     // Fecha o menu se clicar fora
     document.addEventListener("click", (e) => {
-      if (!header.contains(e.target) && mobileMenu.style.display === "flex") {
+      if (!header.contains(e.target) && mobileMenu.classList.contains("show")) {
         hamburger.classList.remove("active");
-        mobileMenu.style.display = "none";
+        mobileMenu.classList.remove("show");
       }
     });
   }
@@ -71,24 +71,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
+      // Para qualquer câmera anterior
       if (videoStream) {
         videoStream.getTracks().forEach(track => track.stop());
       }
 
-      const constraints = { video: { width: 420, height: 320, facingMode: facingMode } };
+      // Ajusta constraints para celular
+      const constraints = {
+        video: {
+          width: { ideal: 480 },
+          height: { ideal: 360 },
+          facingMode: { exact: facingMode } // "user" ou "environment"
+        },
+        audio: false
+      };
+
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
 
       const video = document.createElement('video');
       video.autoplay = true;
       video.playsInline = true;
       video.srcObject = videoStream;
-      video.width = 420;
-      video.height = 320;
+      video.style.width = '100%';
+      video.style.height = '100%';
       video.style.objectFit = 'cover';
 
       webcamContainer.innerHTML = '';
       webcamContainer.appendChild(video);
 
+      // Habilita/desabilita botões
       document.getElementById('stop-webcam').disabled = false;
       document.getElementById('capture').disabled = false;
       document.getElementById('start-webcam-front').disabled = true;
@@ -97,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
       window.videoElement = video;
 
     } catch (err) {
-      resultEl.innerHTML = `<p style="color:red">Não foi possível acessar a câmera. Verifique permissões e HTTPS.</p>`;
       console.error(err);
+      resultEl.innerHTML = `<p style="color:red">Não foi possível acessar a câmera. Verifique permissões e HTTPS.</p>`;
     }
   }
 
@@ -118,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (videoStream) {
       videoStream.getTracks().forEach(track => track.stop());
       videoStream = null;
-      webcamContainer.innerHTML = 'Webcam desligada';
+      webcamContainer.innerHTML = 'Câmera desligada';
       stopBtn.disabled = true;
       captureBtn.disabled = true;
       startFrontBtn.disabled = false;
